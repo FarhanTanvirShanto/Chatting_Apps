@@ -1,0 +1,93 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container{
+    width: 87.5%;
+    margin: 0 auto;
+}
+/* nav*/
+.header{
+    background-color: #D32F2F;
+    color: #FFCDD2;
+    padding: 10px 0;
+}
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-container ul {
+    list-style: none;
+    display: flex;
+    
+}
+.nav-container ul li a{
+    display: block;
+    width: 90px;
+    text-align: center;
+    text-decoration: none;
+    color: #FFCDD2;
+    padding: 7px 0;
+}
+.nav-container ul li a:hover{
+    background-color: #df4d4d;
+    
+}
+.panel {
+    display: flex;
+    justify-content: flex-start;
+}
+.c1
+{
+    width: 25%;
+    padding: 3px;
+}
+.c2
+{
+    width: 50%;
+    padding: 3px;
+}
+.c3
+{
+   width: 75%;
+   padding: 3px;
+}
+.c4
+{
+    width: 100%;
+    padding: 3px;
+}
+.ctrl
+{
+    flex: 1 1 auto;
+    padding: .25rem;
+    border: solid 1px lightgray;
+}
+.btn 
+{
+    width: 90px;
+    padding: .25rem;
+}
+.flex
+{
+    display: flex;
+}
+.list
+{
+    list-style: none;
+}
+.list li {
+    padding: 5px 5px 5px 8px;
+    border-bottom: dotted 1px lightgray;
+}
+h3{
+    font-weight: 500;
+}
+style.css
+Displaying style.css.

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Chat</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="node_modules/socket.io/client-dist/socket.io.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(()=>{
+            var socket = io.connect("http://localhost:9595");
+            socket.on('success', m=>{
+                //console.log(m);
+                $('#pconnect').show();
+                //events
+                socket.on('userlist', list=>{
+                    $("#users").empty();
+                    list.forEach(x=>{
+                        $("#users").append(`<li>${x}</li>`)
+                    });
+                    $('#pconnect').hide();
+                    $('#pchat').show();
+                });
+                socket.on('message', data=>{
+                    $('#messages').append(`<li>${data.from}: ${data.msg}</li>`);
+                })
+                //connect button click
+                $('#bconnect').click(()=>{
+                    socket.emit('join', $('#dname').val());
+                })
+                //send button click
+                $('#bsend').click(()=>{
+                    socket.emit('send', $('#msg').val());
+                    $('#messages').append(`<li>You: ${$('#msg').val()}</li>`);
+                    $('#msg').val('')
+                })
+            });
+        })
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="container nav-container">
+            <span>NodeJS App</span>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="chat.html">Chat</a></li>
+                    <li><a href="async.html">Async</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container" >
+        <div class="panel" id="pconnect" style="display: none;">
+            <div class="c1"></div>
+            <div class="c2 flex">
+                <input placeholder="display name..." id="dname" class="ctrl" /><button class="btn" id="bconnect">Connect</button>
+            </div>
+            <div class="c1"></div>
+        </div>
+        <div class="panel flex" id="pchat" style="display: none;">
+            <div class="c1">
+                <h3>Connected</h3>
+                <ul id="users" class="list">
+                </ul>
+            </div>
+            <div class="c3">
+                <div class="flex">
+                    <input placeholder="message..." id="msg" class="ctrl" /><button class="btn" id="bsend">Send</button>
+                </div>
+                <div>
+                    <h3>Messages</h3>
+                    <ul id="messages" class="list">
+
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
